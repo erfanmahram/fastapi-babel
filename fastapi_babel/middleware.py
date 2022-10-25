@@ -33,7 +33,7 @@ class InternationalizationMiddleware(BaseHTTPMiddleware):
         if lang_code:
             if lang_code not in self.babel.config.ACCEPTABLE_LANGUAGES:
                 try:
-                    lang_code = Locale.parse(lang_code, sep='-').language
+                    lang_code = Locale.parse(lang_code.split(";")[0], sep='-').language
                 except:
                     lang_code = self.babel.config.BABEL_DEFAULT_LOCALE
                 if lang_code not in self.babel.config.ACCEPTABLE_LANGUAGES:
